@@ -18,5 +18,10 @@ def create_gfilter(size: int, sigma: float):
     # Use outer product to get 2D-Gaussian filter
     return np.outer(g_vector, g_vector)
 
-def gradient():
-    ...
+def gradient(img):
+    sobel_x = np.outer([1, 2, 1], [-1, 0, 1])
+    sobel_y = np.outer([-1, 0, 1], [1, 2, 1])
+    gx = np.convolve(sobel_x, img)
+    gy = np.convolve(sobel_y, img)
+    return np.sqrt(gx ** 2 + gy ** 2)
+
